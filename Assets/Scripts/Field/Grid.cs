@@ -11,18 +11,27 @@ public class Grid : MonoBehaviour
     public GameObject bluePanel;
 
     private void Start() {
+        RenderPanels(GetPanelPositions());
         grid = AssignGrid(); 
     }
 
     public List<Panel> AssignGrid() {
-        RenderPanels(GetPanelPositions());
-
         var result = GetPanelPositions()
-            .Select(x => ToIntVector2(x))
-            .Select(x => new Panel(x, null, x.x > 0))
+            .Select(x => new Panel {
+                position = ToIntVector2(x),
+                obj = null,
+                walkable = x.x < 0,
+                worldPosition = new Vector3(x.x, x.y, 0)
+            })
             .ToList();
 
         return result;
+    }
+
+    public void UpdateGrid(BattleObject obj, IntVector2 targetPos) {
+        var targetPanel = grid.Where(x => targetPos == x.position).FirstOrDefault();
+
+        targetPanel.obj = obj;
     }
 
     public void RenderPanels(List<Vector2> panels) {
