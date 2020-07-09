@@ -36,7 +36,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BattleInputController.cs" />
      <Compile Include="Assets\Scripts\BattleObjects\BattleObject.cs" />
+     <Compile Include="Assets\Scripts\Chip.cs" />
+     <Compile Include="Assets\Scripts\ChipEffect.cs" />
+     <Compile Include="Assets\Scripts\ChipEffectTypes.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Mettaur.cs" />
      <Compile Include="Assets\Scripts\Field\Grid.cs" />
      <Compile Include="Assets\Scripts\Field\Panel.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />
