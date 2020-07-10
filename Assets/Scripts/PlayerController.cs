@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,17 +13,6 @@ public class PlayerController : BattleObject
         "Megaman",
         100,
         new IntVector2(1, 1),
-        new List<Chip>{
-            new Chip(
-                "Cannon",
-                new List<ChipEffect>{
-                    new ChipEffect(
-                        ChipEffectTypes.rayCast,
-                        null,
-                        40
-                    )
-                }
-            )
-        }
+        true
     ) {}
 }

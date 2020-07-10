@@ -63,7 +63,12 @@ public class Grid : MonoBehaviour
     }
 
     public static List<Vector2> GetPanelPositions() {
-	    var xs = new List<float> { -1f, -0.6f, -0.2f, 0.2f, 0.6f, 1f };
+        // var xSize = 6;
+        // var ySize = 3;
+        // var xPanelSize = 0.4f;
+        // var yPanelSize = 0.24f;
+
+        var xs = new List<float> { -1f, -0.6f, -0.2f, 0.2f, 0.6f, 1f };
 	    var ys = new List<float> { 0, -0.24f, -0.48f };
 
 	    var results = (

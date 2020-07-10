@@ -8,6 +8,6 @@ public class Mettaur : BattleObject
         "Mettaur",
         40, 
         new IntVector2(4, 1),
-        null
+        true
     ) {}
 }

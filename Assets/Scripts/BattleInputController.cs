@@ -13,13 +13,16 @@ public class BattleInputController : MonoBehaviour
 
     public void InputController() {
         if (Input.GetKeyDown(KeyCode.Z)) ShootController();
-        if (Input.GetKeyDown(KeyCode.X) && user.chips.Count() > 0) ChipController();
+        if (Input.GetKeyDown(KeyCode.X)) ChipController();
     }
 
     public void ChipController() {
+        if (user.chips.Count() == 0 || user.chips == null) return;
+
         var chip = user.chips.FirstOrDefault();
-        Debug.Log(chip.chipName);
-        chip.UseEffect(user);
+        chip.UseEffect(user, gameObject);
+        user.chips.Remove(chip);
+        // chip.IfExists(chip => chip.UseEffect(user));
     }
 
     public void ShootController() {

@@ -6,6 +6,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public PlayerController obj;
+    public Animator anim;
     public Grid grid;
 
     private void Update() {
@@ -13,6 +14,8 @@ public class MovementController : MonoBehaviour
     }
 
     public void InputController() {
+        if (anim.GetBool("isMoving") || !obj.canMove) return;
+
         if      (Input.GetKeyDown(KeyCode.RightArrow)) Move(new IntVector2( 1,  0));
         else if (Input.GetKeyDown(KeyCode.LeftArrow )) Move(new IntVector2(-1,  0));
         else if (Input.GetKeyDown(KeyCode.UpArrow   )) Move(new IntVector2( 0, -1));
@@ -34,8 +37,22 @@ public class MovementController : MonoBehaviour
     }
 
     public void UpdateObj(IntVector2 targetPos, Panel targetPanel) {
+        obj.canMove = false;
+        anim.SetBool("isMoving", true);
+        anim.SetBool("startMoving", true);
+
         obj.position = targetPos;
         obj.transform.position = (targetPanel.worldPosition + obj.offset);
         grid.UpdateGrid(obj, targetPos);
+
+        StartCoroutine(MovementCoroutine());
+    }
+
+    public IEnumerator MovementCoroutine() {
+        yield return new WaitForSeconds(0.02f);
+        anim.SetBool("isMoving", false);
+
+        yield return new WaitForSeconds(0.1f);
+        obj.canMove = true;
     }
 }
